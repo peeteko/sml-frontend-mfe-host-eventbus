@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "ng:generate" : "ng generate",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "addModuleFederation": "ng add @angular-architects/module-federation --project sml-frontend-prototype --port 4200 --type host",

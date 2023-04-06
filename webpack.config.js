@@ -16,11 +16,11 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
         library: { type: "module" },
-      
+
         remotes: {
-          "mfeEpfPlugins": "http://localhost:4201/remoteEntry.js",
+          //"mfeEpfPlugins": "http://localhost:4201/remoteEntry.js"
         },
-        
+
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
@@ -28,7 +28,6 @@ module.exports = {
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' }
         })
     })
-    
+
   ]
 };
-
