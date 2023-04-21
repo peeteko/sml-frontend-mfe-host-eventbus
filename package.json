@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "ng:generateInterceptor" : "ng generate interceptor jwtToken",
     "ng:generate" : "ng generate",
-    "ng:generateservice" : "ng generate service services/user-service",
+    "ng:generateservice" : "ng generate service services/event-bus",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "addModuleFederation": "ng add @angular-architects/module-federation --project sml-frontend-prototype --port 4200 --type host",

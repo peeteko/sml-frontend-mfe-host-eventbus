@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SmlUserDetails } from '../model/sml-user-details';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SmlUserDetailsWithToken } from '../model/sml-user-details-with-token';
 
 
 @Injectable({
@@ -11,10 +12,26 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
+  smlUserDetailsWithToken : SmlUserDetailsWithToken | null = null;
+  loggedIn : boolean = false;
+
   constructor( private readonly httpClient: HttpClient,) { }
 
-  public getUserDetails(): Observable<SmlUserDetails> {
-    return this.httpClient.get<SmlUserDetails>(`${environment.smlCustomerApiEndpoint}/customer/user/me`, {headers : this._getBaseHeaders()} );
+  public loadUserDetails() {
+    this.httpClient.get<SmlUserDetailsWithToken>(`${environment.smlCustomerApiEndpoint}/customer/user/me`, 
+    {headers : this._getBaseHeaders()} )
+    .subscribe((smlUserDetailsWithToken) => {
+      this.smlUserDetailsWithToken = smlUserDetailsWithToken;
+      this.loggedIn = true;
+    },
+    error => {
+      this.signOut();
+    });
+  }
+
+  public signOut(){
+    this.loggedIn = false;
+    this.smlUserDetailsWithToken = null;
   }
 
   private _getBaseHeaders() : HttpHeaders{

@@ -311,22 +311,36 @@
   />
   <span>Welcome to host application</span>
     <div class="spacer"></div>
-    <a routerLink="/plugins">
-      <button
+    
+      <button *ngIf="loggedIn()"
               class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
               routerLinkActive="text-cyan-500 font-semibold"
+              (click) = "goToPlugins()"
       >
         <span class="material-icons-outlined text-gray-500">plugins</span>
         <span>&nbsp;Plugins</span>
       </button>
-    </a>
+   
+    <button *ngIf="!loggedIn(); else logout"
+            class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
+            (click)="signIn()"
+          >
+            <span>&nbsp;Sign In</span>
+    </button>
+    <ng-template #logout>
+      <button
+        class="flex items-center transition ease-in delay-150 duration-300 h-10 px-4 rounded-lg hover:border hover:border-sky-400"
+        (click)="signOut()"
+      >
+        <span>&nbsp;Sign Out</span>
+      </button>
+  </ng-template>
+
 </div>
 
 <div class="content" role="main">
 
- 
 
- 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
